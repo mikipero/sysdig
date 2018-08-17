@@ -4,6 +4,7 @@ pipeline {
         stage ('preparation') {
             steps {
                 sh 'hostname'
+                sh 'echo  br = ${BuildBranch} '
                 sh 'uname -a'
 		sh 'gcc --version -v'
 		sh 'g++ --version -v'
