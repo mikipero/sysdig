@@ -10,7 +10,7 @@ pipeline {
                 sh 'pwd -P'
                 sh 'df -h'
 		dir('sysdig') { checkout scm }
-                sh 'pushd sysdig; CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD); echo ${CURR_BRANCH}; popd '
+                sh 'pushd sysdig; git branch; CURR_BRANCH=$(git rev-parse --abbrev-ref HEAD); echo ${CURR_BRANCH}; popd '
                 sh 'pwd -P; df -h'
                 sh 'ls -l'
                 sh 'echo build dokcer images of various builders ...'
