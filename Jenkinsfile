@@ -25,7 +25,7 @@ pipeline {
             steps {
                 parallel (
                     "info" : { sh 'pwd -P && df -h' },
-                    "test_parallel" 	: { sh 'echo ${CURR_BRANCH}...; sleep 60 && echo test_parallel' },
+                    "test_parallel" 	: { sh 'echo ${BRANCH_NAME}...; sleep 60 && echo test_parallel' },
                     "fedora-atomic" 	: { sh 'mkdir -p probe/fedora_atomic && cd probe/fedora_atomic && docker run -i --rm --name fedora-atomic-build -v ${PWD}:/build/probe fedora-builder sysdig-probe jenkins-pipeline-test stable Fedora-Atomic && cp -u output/* ../output/ && echo fedora-atomic finished'},
                     "ubuntu" 		    : { sh 'mkdir -p probe/ubuntu        && cd probe/ubuntu        && bash -x ../../sysdig/scripts/build-probe-binaries sysdig-probe jenkins-pipeline-test stable Ubuntu && cp -u output/* ../output/ && echo ubuntu finished'},
                     "debian" 		    : { sh 'mkdir -p probe/debian        && cd probe/debian        && bash -x ../../sysdig/scripts/build-probe-binaries sysdig-probe jenkins-pipeline-test stable Debian && cp -u output/* ../output/ && echo debian finished' },
