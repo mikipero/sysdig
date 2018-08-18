@@ -4,13 +4,13 @@ pipeline {
         stage ('preparation') {
             steps {
                 sh 'hostname'
-                sh 'echo  br = ${BuildBranch} '
                 sh 'uname -a'
 		sh 'gcc --version -v'
 		sh 'g++ --version -v'
                 sh 'pwd -P'
                 sh 'df -h'
 		dir('sysdig') { checkout scm }
+                sh 'echo  br = ${BuildBranch} '
                 sh 'pwd -P; df -h'
                 sh 'ls -l'
                 sh 'echo build dokcer images of various builders ...'
